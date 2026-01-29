@@ -1,48 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Halaman Rahasia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Terkunci</title>
     <style>
         body { 
-            font-family: sans-serif; 
-            text-align: center; 
-            padding-top: 100px; 
-            color: white; 
-            /* Ini link gambar yang sudah jadi */
-            background-image: url('https://i.ibb.co/6r7v477/hacker.jpg'); 
-            background-size: cover; 
-            background-position: center;
+            background-color: #000000; 
+            color: #00ff00; 
+            font-family: 'Courier New', Courier, monospace; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .kotak {
-            background: rgba(0, 0, 0, 0.8); 
-            padding: 30px;
-            display: inline-block;
-            border-radius: 15px;
-            border: 2px solid #00ff00;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+            text-align: center;
+            width: 300px;
         }
-        input { padding: 10px; border-radius: 5px; border: none; margin-bottom: 10px; text-align: center;}
-        button { padding: 10px 20px; background-color: #00ff00; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;}
+        h2 { margin-bottom: 20px; font-size: 1.5rem; letter-spacing: 2px; }
+        p { color: #ffffff; font-size: 0.9rem; margin-bottom: 20px; }
+        input { 
+            width: 90%;
+            padding: 12px; 
+            margin-bottom: 20px; 
+            border: 1px solid #00ff00; 
+            background: #000; 
+            color: #00ff00; 
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+        }
+        button { 
+            width: 100%;
+            padding: 12px; 
+            background-color: #00ff00; 
+            color: #000; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        button:hover {
+            background-color: #00cc00;
+            box-shadow: 0 0 10px #00ff00;
+        }
     </style>
 </head>
 <body>
+
     <div class="kotak">
-        <h2 style="color: #00ff00;">SECURITY CHECK</h2>
-        <p>Masukkan Password untuk Masuk</p>
-        <input type="password" id="passInput" placeholder="Ketik password...">
+        <h2>ACCESS DENIED</h2>
+        <p>Silakan masukkan kode enkripsi untuk membuka pesan.</p>
+        <input type="password" id="passInput" placeholder="PASSWORD...">
         <br>
-        <button onclick="cekPassword()">ACCESS SYSTEM</button>
+        <button onclick="cekPassword()">UNLOCK SYSTEM</button>
     </div>
 
     <script>
         function cekPassword() {
             const pass = document.getElementById("passInput").value;
+            // Password: Everyone is a king
             if (pass === "Everyone is a king") {
-                alert("Akses Diterima! Selamat datang, Raja.");
+                alert("Akses Diterima! Membuka data...");
                 window.location.href = "https://www.google.com";
             } else {
-                alert("Password Salah! Sistem Terkunci.");
+                alert("Password Salah! Sistem tetap terkunci.");
             }
         }
     </script>
