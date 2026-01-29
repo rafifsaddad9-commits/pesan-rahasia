@@ -3,25 +3,63 @@
 <head>
     <title>Halaman Rahasia</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #121212; color: white; }
-        input { padding: 10px; border-radius: 5px; border: none; }
-        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            padding-top: 100px; 
+            color: white; 
+            /* 👇 MASUKKAN LINK GAMBAR KAMU DI ANTARA TANDA PETIK DI BAWAH INI 👇 */
+            background-image: url('https://ibb.co.com/Sw433KxZ'); 
+            background-size: cover; 
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+        }
+        .kotak {
+            background: rgba(0, 0, 0, 0.7); /* Background transparan supaya teks terbaca */
+            padding: 30px;
+            display: inline-block;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+        }
+        input { 
+            padding: 12px; 
+            border-radius: 5px; 
+            border: none; 
+            margin-bottom: 15px; 
+            text-align: center;
+            width: 200px;
+        }
+        button { 
+            padding: 10px 25px; 
+            background-color: #ffffff; 
+            color: #000; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h2>Masukkan Password untuk Masuk</h2>
-    <input type="password" id="passInput" placeholder="Ketik di sini...">
-    <button onclick="cekPassword()">Masuk</button>
+    <div class="kotak">
+        <h2>Sistem Terkunci</h2>
+        <p>Silakan masukkan password untuk melihat pesan.</p>
+        <input type="password" id="passInput" placeholder="Password...">
+        <br>
+        <button onclick="cekPassword()">BUKA PESAN</button>
+    </div>
 
     <script>
         function cekPassword() {
             const pass = document.getElementById("passInput").value;
-            // Password yang kamu minta
+            // Password tetap sama: Everyone is a king
             if (pass === "Everyone is a king") {
-                alert("Akses Diterima! Kamu memang seorang Raja.");
-                window.location.href = "https://www.google.com"; // Bisa diarahkan ke mana saja
+                alert("Akses Diterima!");
+                window.location.href = "https://www.google.com";
             } else {
-                alert("Password Salah! Coba lagi.");
+                alert("Password Salah! Silakan coba lagi.");
             }
         }
     </script>
