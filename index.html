@@ -4,32 +4,45 @@
     <title>Halaman Rahasia</title>
     <style>
         body { 
-            background-color: black; 
-            color: white; 
             font-family: sans-serif; 
             text-align: center; 
-            padding-top: 150px;
+            padding-top: 100px; 
+            color: white; 
+            /* Ini link gambar yang sudah jadi */
+            background-image: url('https://i.ibb.co/6r7v477/hacker.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            height: 100vh;
             margin: 0;
         }
-        input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; margin-bottom: 10px; }
-        button { padding: 10px 20px; background: white; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .kotak {
+            background: rgba(0, 0, 0, 0.8); 
+            padding: 30px;
+            display: inline-block;
+            border-radius: 15px;
+            border: 2px solid #00ff00;
+        }
+        input { padding: 10px; border-radius: 5px; border: none; margin-bottom: 10px; text-align: center;}
+        button { padding: 10px 20px; background-color: #00ff00; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;}
     </style>
 </head>
 <body>
-    <h2>SYSTEM LOCKED</h2>
-    <p>Masukkan password untuk melanjutkan.</p>
-    <input type="password" id="passInput" placeholder="Password...">
-    <br>
-    <button onclick="cekPassword()">UNLOCK</button>
+    <div class="kotak">
+        <h2 style="color: #00ff00;">SECURITY CHECK</h2>
+        <p>Masukkan Password untuk Masuk</p>
+        <input type="password" id="passInput" placeholder="Ketik password...">
+        <br>
+        <button onclick="cekPassword()">ACCESS SYSTEM</button>
+    </div>
 
     <script>
         function cekPassword() {
             const pass = document.getElementById("passInput").value;
             if (pass === "Everyone is a king") {
-                alert("Welcome, King.");
+                alert("Akses Diterima! Selamat datang, Raja.");
                 window.location.href = "https://www.google.com";
             } else {
-                alert("Access Denied!");
+                alert("Password Salah! Sistem Terkunci.");
             }
         }
     </script>
