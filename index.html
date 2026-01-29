@@ -4,62 +4,32 @@
     <title>Halaman Rahasia</title>
     <style>
         body { 
+            background-color: black; 
+            color: white; 
             font-family: sans-serif; 
             text-align: center; 
-            padding-top: 100px; 
-            color: white; 
-            /* 👇 MASUKKAN LINK GAMBAR KAMU DI ANTARA TANDA PETIK DI BAWAH INI 👇 */
-            background-image: url(https://i.ibb.co.com/mR8XzYp/foto-kamu.jpg); 
-            background-size: cover; 
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
+            padding-top: 150px;
             margin: 0;
         }
-        .kotak {
-            background: rgba(0, 0, 0, 0.7); /* Background transparan supaya teks terbaca */
-            padding: 30px;
-            display: inline-block;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
-        }
-        input { 
-            padding: 12px; 
-            border-radius: 5px; 
-            border: none; 
-            margin-bottom: 15px; 
-            text-align: center;
-            width: 200px;
-        }
-        button { 
-            padding: 10px 25px; 
-            background-color: #ffffff; 
-            color: #000; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            font-weight: bold;
-        }
+        input { padding: 10px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: white; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="kotak">
-        <h2>Sistem Terkunci</h2>
-        <p>Silakan masukkan password untuk melihat pesan.</p>
-        <input type="password" id="passInput" placeholder="Password...">
-        <br>
-        <button onclick="cekPassword()">BUKA PESAN</button>
-    </div>
+    <h2>SYSTEM LOCKED</h2>
+    <p>Masukkan password untuk melanjutkan.</p>
+    <input type="password" id="passInput" placeholder="Password...">
+    <br>
+    <button onclick="cekPassword()">UNLOCK</button>
 
     <script>
         function cekPassword() {
             const pass = document.getElementById("passInput").value;
-            // Password tetap sama: Everyone is a king
             if (pass === "Everyone is a king") {
-                alert("Akses Diterima!");
+                alert("Welcome, King.");
                 window.location.href = "https://www.google.com";
             } else {
-                alert("Password Salah! Silakan coba lagi.");
+                alert("Access Denied!");
             }
         }
     </script>
