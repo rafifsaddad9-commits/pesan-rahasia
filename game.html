@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retro Racer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        body { margin: 0; background: #222; overflow: hidden; font-family: sans-serif; }
+        canvas { display: block; background: #333; margin: 0 auto; }
+        #ui { position: absolute; top: 10px; left: 10px; color: white; font-weight: bold; font-size: 20px; }
+        .controls { position: absolute; bottom: 0; width: 100%; height: 50%; display: flex; }
+        .btn { flex: 1; opacity: 0.3; }
+    </style>
+</head>
+<body>
+    <div id="ui">Score: 0</div>
+    <canvas id="gameCanvas"></canvas>
+    <div class="controls">
+        <div class="btn" id="left"></div>
+        <div class="btn" id="right"></div>
+    </div>
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+const scoreEl = document.getElementById("ui");
+
+canvas.width = window.innerWidth > 400 ? 400 : window.innerWidth;
+canvas.height = window.innerHeight;
+
+let score = 0;
+let player = { x: canvas.width / 2 - 25, y: canvas.height - 100, w: 50, h: 80, color: "red" };
+let enemies = [];
+let gameActive = true;
+
+function createEnemy() {
+    let x = Math.random() * (canvas.width - 50);
+    enemies.push({ x: x, y: -100, w: 50, h: 80, color: "yellow" });
+}
+
+function update() {
+    if (!gameActive) return;
+    
+    if (Math.random() < 0.02) createEnemy();
+
+    enemies.forEach((enemy, index) => {
+        enemy.y += 5 + (score / 500); // Makin lama makin cepat
+        
+        // Cek Tabrakan
+        if (player.x < enemy.x + enemy.w && player.x + player.w > enemy.x &&
+            player.y < enemy.y + enemy.h && player.y + player.h > enemy.y) {
+            gameActive = false;
+            alert("GAME OVER! Skor kamu: " + Math.floor(score));
+            location.reload();
+        }
+
+        if (enemy.y > canvas.height) {
+            enemies.splice(index, 1);
+            score += 10;
+        }
+    });
+    score += 0.1;
+    scoreEl.innerText = "Score: " + Math.floor(score);
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Gambar Jalan
+    ctx.fillStyle = "#444";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "white";
+    ctx.setLineDash([20, 20]);
+    ctx.beginPath(); ctx.moveTo(canvas.width/2, 0); ctx.lineTo(canvas.width/2, canvas.height); ctx.stroke();
+
+    // Gambar Pemain
+    ctx.fillStyle = player.color;
+    ctx.fillRect(player.x, player.y, player.w, player.h);
+
+    // Gambar Musuh
+    enemies.forEach(enemy => {
+        ctx.fillStyle = enemy.color;
+        ctx.fillRect(enemy.x, enemy.y, enemy.w, enemy.h);
+    });
+}
+
+function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+// Kontrol HP
+document.getElementById("left").ontouchstart = () => { if(player.x > 0) player.x -= 40; };
+document.getElementById("right").ontouchstart = () => { if(player.x < canvas.width - player.w) player.x += 40; };
+
+loop();
+</script>
+</body>
+</html>
